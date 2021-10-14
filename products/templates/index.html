@@ -1,10 +1,49 @@
-<!DOCTYPE html>
-<html lange="ja">
-    <head>
-        <meta charset="UTF-8">
-        <title>トップページ</title>
-    </head>
-    <body>
-        <h1>Hello World</h1>
-    </body>
-</html>
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}
+Okazawa Riku のポートフォリオ
+{% endblock %}
+
+{% block header %}
+<!-- Masthead-->
+    <header class="masthead bg-primary text-white text-center">
+        <div class="container d-flex align-items-center flex-column">
+            <!-- Masthead Avatar Image-->
+            <img class="masthead-avatar mb-5" src="{% static 'img/img/avataaars.svg' %}" alt="..." />
+            <!-- Masthead Heading-->
+            <h1 class="masthead-heading text-uppercase mb-0">Okazawa Riku</h1>
+            <!-- Icon Divider-->
+            <div class="divider-custom divider-light">
+                <div class="divider-custom-line"></div>
+                <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                <div class="divider-custom-line"></div>
+            </div>
+            <!-- Masthead Subheading-->
+            <p class="masthead-subheading font-weight-light mb-0">岡澤律来のポートフォリオです．</p>
+        </div>
+    </header>
+{% endblock %}
+
+{% block contents %}
+
+<!-- About Section-->
+<section class="page-section mb-0" id="about">
+    <div class="container">
+        <!-- About Section Heading-->
+        <h2 class="page-section-heading text-center text-uppercase">About</h2>
+        <!-- Icon Divider-->
+        <div class="divider-custom">
+            <div class="divider-custom-line"></div>
+            <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+            <div class="divider-custom-line"></div>
+        </div>
+        <!-- About Section Content-->
+        <div class="row">
+            <div class="col-lg-4 ms-auto"><p class="lead">ここにこのサイトの説明を書きますここにこのサイトの説明を書きますここにこのサイトの説明を書きますここにこのサイトの説明を書きますここにこのサイトの説明を書きます</p></div>
+            <div class="col-lg-4 me-auto"><p class="lead">ここにこのサイトの説明を書きますここにこのサイトの説明を書きますここにこのサイトの説明を書きますここにこのサイトの説明を書きますここにこのサイトの説明を書きます</p></div>
+        </div>
+    </div>
+</section>
+{% endblock %}
