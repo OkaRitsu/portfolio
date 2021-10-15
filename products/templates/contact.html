@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %}お問合せ{% endblock %}
+
+
+{% block contents %}
+<div class="container">
+    <div class="my-div-style">
+        <!-- Contact Section Heading-->
+        <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Contact Me</h2>
+        <!-- Icon Divider-->
+        <div class="divider-custom">
+            <div class="divider-custom-line"></div>
+            <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+            <div class="divider-custom-line"></div>
+        </div>
+        <!-- Contact Section Form-->
+        <div class="row justify-content-center">
+            <div class="col-lg-8 col-xl-7">
+                <form method="post">
+                    {% csrf_token %}
+
+                    {{ form.non_field_errors }}
+
+                    {% for field in form %}
+                    <div class="form-floating mb-3">
+                        {{ field }}
+                        <label for="name">{{ field.label_tag }}</label>
+                        {{ field.errors }}
+                    </div>
+                    {% endfor %}
+                
+                    <!-- Submit Button-->
+                    <button class="btn btn-primary btn-xl" id="submitButton" type="submit">送信</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
