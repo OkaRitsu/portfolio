@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}作品一覧{% endblock %}
+
+{% block contents %}
+<!-- Page content-->
+<div class="my-div-style ">
+    <div class="container">
+        <!-- Contact Section Heading-->
+        <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">My Products</h2>
+        <!-- Icon Divider-->
+        <div class="divider-custom">
+            <div class="divider-custom-line"></div>
+            <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+            <div class="divider-custom-line"></div>
+        </div>
+        <div class="row">
+            <!-- Blog entries-->
+            <div class="col-lg-8 mx-auto">
+                {% for product in product_list %}
+                    <!-- Blog post-->
+                    <div class="card mb-4">
+                        <a href="#!"><img class="card-img-top" src="{{ product.img1.url }}" alt="..." width="700" height="350" /></a>
+                        <div class="card-body">
+                            <div class="small text-muted">{{ product.created_at }}</div>
+                            <h2 class="card-title h4">{{ product.title }}</h2>
+                            <p class="card-text">{{ product.content|truncatechars:40 }}</p>
+                            <a class="btn btn-primary" href="#!">Read more →</a>
+                        </div>
+                    </div>
+                        
+                    {% empty %}
+                        <p>作品がありません．</p>
+                {% endfor %}
+                </div>                    
+            </div>
+            <!-- ページネーション処理 -->
+                {% if is_paginated %}
+                    <ul class="pagination justify-content-center">
+                        <!-- 前ページへのリンク -->
+                        {% if page_obj.has_previous %}
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{ page_obj.previous_page_number }}">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            </li>
+                        {% endif %}
+
+                        <!-- ページ数表示 -->
+                        {% for page_num in page_obj.paginator.page_range %}
+                            {% if page_obj.number == page_num %}
+                                <li class="page-item active"><a class="page-link" href="#">{{ page_num }}</a></li>
+                            {% else %}
+                                <li class="page-item"><a class="page-link" href="?page={{ page_num }}">{{ page_num }}</a></li>
+                            {% endif %}
+                        {% endfor %}
+
+                        <!-- 次ページへのリンク -->
+                        {% if page_obj.has_next %}
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{ page_obj.next_page_number }}">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                {% endif %}
+            
+        </div>
+    </div>
+</div>
+{% endblock %}

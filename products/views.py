@@ -5,6 +5,7 @@ from django.urls import reverse_lazy
 from django.views import generic
 
 from .forms import ContactForm
+from .models import Product
 
 logger = logging.getLogger(__name__)
 
@@ -23,3 +24,13 @@ class ContactView(generic.FormView):
         messages.success(self.request, 'メッセージを送信しました．')
         logger.info('Contact sent by {}'.format(form.cleaned_data['name']))
         return super().form_invalid(form)
+
+
+class ProductListView(generic.ListView):
+    model = Product
+    template_name = 'product_list.html'
+    paginate_by = 2
+
+    def get_queryset(self):
+        products = Product.objects.order_by('-created_at')
+        return products
