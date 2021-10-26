@@ -34,3 +34,8 @@ class ProductListView(generic.ListView):
     def get_queryset(self):
         products = Product.objects.order_by('-created_at')
         return products
+
+
+class ProductDetailView(generic.DetailView):
+    model = Product
+    template_name = 'product_detail.html'
