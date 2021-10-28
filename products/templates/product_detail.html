@@ -18,11 +18,41 @@
                         <!-- Post meta content-->
                         <div class="text-muted fst-italic mb-2">{{ object.createdat }}</div>
                         <!-- Post categories-->
-                        <a class="badge bg-secondary text-decoration-none link-light" href="#!">Web Design</a>
-                        <a class="badge bg-secondary text-decoration-none link-light" href="#!">Freebies</a>
+                        {% for tag in object.tags %}
+                            <a class="badge bg-secondary text-decoration-none link-light" href="#!">{{ tag }}</a>
+                        {% endfor %}
                     </header>
                     <!-- Preview image figure-->
-                    <figure class="mb-4"><img class="img-fluid rounded" src="{{ object.img1.url }}" alt="..." /></figure>
+                    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="{{ object.img1.url }}" class="d-block w-100 h-75" alt="...">
+                            </div>
+                            {% if object.img2 %}
+                            <div class="carousel-item">
+                                <img src="{{ object.img2.url }}" class="d-block w-100 h-75" alt="...">
+                            </div>
+                            {% endif %}
+                            {% if object.img3 %}
+                            <div class="carousel-item">
+                                <img src="{{ object.img3.url }}" class="d-block w-100 h-75" alt="...">
+                            </div>
+                            {% endif %}
+                            {% if object.img4 %}
+                            <div class="carousel-item">
+                                <img src="{{ object.img4.url }}" class="d-block w-100 h-75" alt="...">
+                            </div>
+                            {% endif %}
+                        </div>
+                        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </a>
+                    </div>
                     
                     <!-- Post content-->
                     <section class="mb-5">
@@ -32,33 +62,32 @@
             </div>
             <!-- Side widgets-->
             <div class="col-lg-4">
-                <!-- Search widget-->
                 <div class="card mb-4">
-                    <div class="card-header">Search</div>
-                    <div class="card-body">
-                        <div class="input-group">
-                            <input class="form-control" type="text" placeholder="Enter search term..." aria-label="Enter search term..." aria-describedby="button-search" />
-                            <button class="btn btn-primary" id="button-search" type="button">Go!</button>
-                        </div>
-                    </div>
-                </div>
-                <!-- Categories widget-->
-                <div class="card mb-4">
-                    <div class="card-header">Categories</div>
+                    <div class="card-header">リンク</div>
                     <div class="card-body">
                         <div class="row">
                             <div class="col-sm-6">
                                 <ul class="list-unstyled mb-0">
-                                    <li><a href="#!">Web Design</a></li>
-                                    <li><a href="#!">HTML</a></li>
-                                    <li><a href="#!">Freebies</a></li>
+                                    {% if object.code_url %}
+                                    <li><a href="{{ object.code_url }}">code</a></li>
+                                    {% endif %}
+                                    {% if object.url %}
+                                    <li><a href="{{ object.url }}">URL</a></li>
+                                    {% endif %}
                                 </ul>
                             </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card mb-4">
+                    <div class="card-header">使用技術</div>
+                    <div class="card-body">
+                        <div class="row">
                             <div class="col-sm-6">
                                 <ul class="list-unstyled mb-0">
-                                    <li><a href="#!">JavaScript</a></li>
-                                    <li><a href="#!">CSS</a></li>
-                                    <li><a href="#!">Tutorials</a></li>
+                                    {% for tag in object.tags %}
+                                    <li><a href="#!">{{ tag }}</a></li>
+                                    {% endfor %}
                                 </ul>
                             </div>
                         </div>
